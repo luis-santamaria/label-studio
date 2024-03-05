@@ -32,13 +32,14 @@ services:
       - "8000"
     depends_on:
       - db
+    user: "${APP_UID}:${APP_GID}"
     environment:
       - DJANGO_DB=default
-      - POSTGRE_NAME=postgres
-      - POSTGRE_USER=postgres
-      - POSTGRE_PASSWORD=
-      - POSTGRE_PORT=5432
-      - POSTGRE_HOST=db
+      - POSTGRE_NAME=${POSTGRE_NAME:postgres}
+      - POSTGRE_USER=${POSTGRE_USER:postgres}
+      - POSTGRE_PASSWORD=${POSTGRE_PASSWORD:-}
+      - POSTGRE_PORT=${POSTGRE_PORT:5432}
+      - POSTGRE_HOST=${POSTGRE_HOST:db}
       - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST:-}
       - JSON_LOG=1
     #      - LOG_LEVEL=DEBUG
